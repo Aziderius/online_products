@@ -13,6 +13,8 @@ from app.schemas.category import CategoryRequest
 router = APIRouter(tags=["categories"], dependencies=[Depends(validate_internal_api_key)])
 
 db_dependency = Annotated[Session, Depends(get_db)]
+
+
 @router.get("/all-categories", status_code=status.HTTP_200_OK)
 async def get_all_categories(db: db_dependency):
     return db.query(Categories).all()

@@ -1,5 +1,5 @@
 ---
-openapi: 3.1.0
+openapi: 3.0.0
 info:
   title: FastAPI
   version: 0.1.0
@@ -9,7 +9,7 @@ paths:
       tags:
         - products
       summary: Get All Products
-      operationId: get_all_products_all_products_get
+      operationId: Get All Products
       parameters:
         - name: internal-api-key
           in: header
@@ -34,7 +34,7 @@ paths:
       tags:
         - products
       summary: Get Product By Id
-      operationId: get_product_by_id_product__product_id__get
+      operationId: Get Product By Id
       parameters:
         - name: product_id
           in: path
@@ -65,7 +65,7 @@ paths:
       tags:
         - products
       summary: Get Products By Category
-      operationId: get_products_by_category_products_by_category__category_id__get
+      operationId: Get product by category id
       parameters:
         - name: category_id
           in: path
@@ -96,7 +96,7 @@ paths:
       tags:
         - products
       summary: Create Product
-      operationId: create_product_create_product_category__category_id__post
+      operationId: Create product
       parameters:
         - name: category_id
           in: path
@@ -133,7 +133,7 @@ paths:
       tags:
         - products
       summary: Update Product
-      operationId: update_product_update_product__product_id__put
+      operationId: Update Product
       parameters:
         - name: product_id
           in: path
@@ -170,7 +170,7 @@ paths:
       tags:
         - products
       summary: Delete Product
-      operationId: delete_product_delete_product__product_id__delete
+      operationId: Delete Product
       parameters:
         - name: product_id
           in: path
@@ -198,7 +198,7 @@ paths:
       tags:
         - categories
       summary: Get All Categories
-      operationId: get_all_categories_all_categories_get
+      operationId: Get all categories
       parameters:
         - name: internal-api-key
           in: header
@@ -223,7 +223,7 @@ paths:
       tags:
         - categories
       summary: Get Category By Id
-      operationId: get_category_by_id_category__category_id__get
+      operationId: Get category by id
       parameters:
         - name: category_id
           in: path
@@ -254,7 +254,7 @@ paths:
       tags:
         - categories
       summary: Create Category
-      operationId: create_category_create_category_post
+      operationId: Create category
       parameters:
         - name: internal-api-key
           in: header
@@ -285,7 +285,7 @@ paths:
       tags:
         - categories
       summary: Update Category
-      operationId: update_category_update_category_put
+      operationId: Update category
       parameters:
         - name: category_id
           in: query
@@ -357,11 +357,9 @@ components:
           title: Description
         price:
           type: number
-          exclusiveMinimum: 0
           title: Price
         stock:
           type: integer
-          exclusiveMinimum: 0
           title: Stock
       type: object
       required:
