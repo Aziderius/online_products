@@ -113,6 +113,12 @@ Con el entorno virtual activado:
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
+O simplemente ejecuta el siguiente comando para que FastAPI asigne host y port por defecto:
+
+```bash
+uvicorn app.main:app --reload
+```
+
 ---
 
 ## Documentación automática
