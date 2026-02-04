@@ -1,0 +1,92 @@
+CREATE TABLE categories (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL UNIQUE,
+    description VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    description VARCHAR(255),
+    price NUMERIC(10,2) NOT NULL,
+    stock INT NOT NULL,
+    category_id INT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_category
+        FOREIGN KEY (category_id)
+        REFERENCES categories(id)
+);
+
+INSERT INTO categories (name, description)
+VALUES
+    ('electronics', 'Electronic devices, gadgets and accessories'),
+    ('clothes', 'Clothing, apparel and fashion items for everyday use'),
+    ('furniture', 'Furniture and home furnishing products'),
+    ('books', 'Printed and digital reading material'),
+    ('sport', 'Sports equipment, gear and fitness-related products'),
+    ('toys', 'Toys and games for children of all ages');
+
+INSERT INTO products (name, description, price, stock, category_id)
+VALUES
+('Smartphone', 'Latest generation smartphone with high-resolution display', 699.99, 15,
+ (SELECT id FROM categories WHERE name = 'electronics')),
+('Laptop', 'Portable computer suitable for work and entertainment', 1199.00, 8,
+ (SELECT id FROM categories WHERE name = 'electronics')),
+('Wireless Headphones', 'Noise-cancelling over-ear wireless headphones', 199.50, 20,
+ (SELECT id FROM categories WHERE name = 'electronics')),
+('Smartwatch', 'Smart wearable device with health tracking features', 249.99, 12,
+ (SELECT id FROM categories WHERE name = 'electronics'));
+
+INSERT INTO products (name, description, price, stock, category_id)
+VALUES
+('T-Shirt', 'Cotton short-sleeve t-shirt', 19.99, 50,
+ (SELECT id FROM categories WHERE name = 'clothes')),
+('Jeans', 'Slim fit denim jeans', 49.90, 30,
+ (SELECT id FROM categories WHERE name = 'clothes')),
+('Jacket', 'Water-resistant outdoor jacket', 89.99, 18,
+ (SELECT id FROM categories WHERE name = 'clothes')),
+('Sneakers', 'Comfortable everyday sneakers', 79.50, 25,
+ (SELECT id FROM categories WHERE name = 'clothes'));
+
+INSERT INTO products (name, description, price, stock, category_id)
+VALUES
+('Sofa', 'Three-seat living room sofa', 799.00, 5,
+ (SELECT id FROM categories WHERE name = 'furniture')),
+('Dining Table', 'Wooden dining table for six people', 649.99, 4,
+ (SELECT id FROM categories WHERE name = 'furniture')),
+('Office Chair', 'Ergonomic chair with lumbar support', 159.99, 10,
+ (SELECT id FROM categories WHERE name = 'furniture')),
+('Bookshelf', 'Five-level wooden bookshelf', 129.50, 7,
+ (SELECT id FROM categories WHERE name = 'furniture'));
+
+INSERT INTO products (name, description, price, stock, category_id)
+VALUES
+('Clean Code', 'A Handbook of Agile Software Craftsmanship', 39.99, 20,
+ (SELECT id FROM categories WHERE name = 'books')),
+('Design Patterns', 'Elements of Reusable Object-Oriented Software', 45.00, 15,
+ (SELECT id FROM categories WHERE name = 'books')),
+('The Pragmatic Programmer', 'Journey to mastery in software development', 42.50, 18,
+ (SELECT id FROM categories WHERE name = 'books'));
+
+INSERT INTO products (name, description, price, stock, category_id)
+VALUES
+('Football', 'Professional size football', 29.99, 40,
+ (SELECT id FROM categories WHERE name = 'sport')),
+('Tennis Racket', 'Lightweight tennis racket for intermediate players', 119.00, 12,
+ (SELECT id FROM categories WHERE name = 'sport')),
+('Yoga Mat', 'Non-slip yoga mat', 24.50, 35,
+ (SELECT id FROM categories WHERE name = 'sport')),
+('Dumbbells Set', 'Adjustable dumbbells set for home workouts', 89.99, 10,
+ (SELECT id FROM categories WHERE name = 'sport'));
+
+INSERT INTO products (name, description, price, stock, category_id)
+VALUES
+('Building Blocks', 'Colorful plastic building blocks for kids', 34.99, 25,
+ (SELECT id FROM categories WHERE name = 'toys')),
+('Remote Control Car', 'Rechargeable remote control car', 49.90, 20,
+ (SELECT id FROM categories WHERE name = 'toys')),
+('Doll', 'Soft toy doll suitable for children', 22.50, 30,
+ (SELECT id FROM categories WHERE name = 'toys')),
+('Board Game', 'Family-friendly board game', 39.99, 15,
+ (SELECT id FROM categories WHERE name = 'toys'));
